@@ -4,6 +4,7 @@ import { useNavigate,Link } from "react-router-dom";
 export default function Read(){
     const [data,setData]=useState([]);
     const [tabledark,setTabledark]=useState("");
+    const [inputText, setInputText]=useState("");
     const navigate= useNavigate();
     function getData(){
         axios.get("https://641312143b710647375e5d37.mockapi.io/crud-app")
@@ -26,6 +27,11 @@ export default function Read(){
     useEffect(()=>{
         getData();
     },[])
+
+    const inputHandler=(e)=>{
+        setInputText(e.target.value.toLowerCase());
+
+    }
     
     return(
         <>  
@@ -41,6 +47,10 @@ export default function Read(){
 
             <div className="d-flex justify-content-between m-2">
                 <h1>Read Operation</h1>
+                    {/* search operation */}
+                    <div className="mb-3">
+                        <input onChange={inputHandler} type="email" className="form-control"  placeholder="search here" />
+                    </div>
 
                 <Link to="/">
                     <button className="btn btn-secondary">Create</button>
@@ -57,9 +67,16 @@ export default function Read(){
                     <th scope="col"></th>
                     </tr>
                 </thead>
-
+                
                 {
-                    data.map((eachData,id)=>{
+                    data.filter((el)=>{
+                        if(el===""){
+                            return el
+                        }
+                        else{
+                            return(el.name.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText))
+                        }
+                    }).map((eachData,id)=>{
                         return(
                            
                             <>
