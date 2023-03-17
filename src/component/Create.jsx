@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 const Create = () => {
     const [name,setName]=useState("");
@@ -24,14 +24,20 @@ const Create = () => {
     }
   return (   
     <>
-    <h1>Create</h1>
+    <div className='d-flex  justify-content-between m-2'>
+        <h2>Create</h2>
+        <Link to="/read">
+            <button className='btn btn-primary'>Show Data</button>
+        </Link>
+        
+    </div>
     <form>
-    <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Name</label>
-            <input onChange={(e)=>setName(e.target.value)} type="text" />
+        <div className="mb-3">
+            <label  className="form-label">Name</label>
+            <input className="form-control" onChange={(e)=>setName(e.target.value)} type="text" />
         </div>
         <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+            <label className="form-label">Email address</label>
             <input type="email" onChange={(e)=>setEmail(e.target.value)} className="form-control" aria-describedby="emailHelp" />
             
         </div>
@@ -39,7 +45,6 @@ const Create = () => {
         
         
     </form>
-
     </>
   )
 }

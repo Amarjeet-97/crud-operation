@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React,{useState,useEffect} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 export default function Update(){
     const [id,setId]=useState(0);
     const [name,setName]=useState("");
@@ -33,14 +33,18 @@ export default function Update(){
                 <form>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label">Name</label>
-                        <input defaultValue={name} onChange={(e)=>setName(e.target.value)} type="text" />
+                        <input defaultValue={name} onChange={(e)=>setName(e.target.value)} className="form-control" type="text" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                         <input type="email" defaultValue={email} onChange={(e)=>setEmail(e.target.value)} className="form-control" aria-describedby="emailHelp" />
                         
                     </div>
-                    <button type='submit' className='btn btn-primary'onClick={handleUpdate}>Update</button>
+                    <button type='submit' className='btn btn-primary mx-2'onClick={handleUpdate}>Update</button>
+                    <Link to= "/read">
+                        <button className='btn btn-success mx-2'>show data</button>
+                    </Link>
+                    
                         
                 </form>
         </>

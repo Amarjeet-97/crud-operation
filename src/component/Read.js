@@ -1,8 +1,9 @@
 import React,{useEffect, useState} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 export default function Read(){
     const [data,setData]=useState([]);
+    const [tabledark,setTabledark]=useState("");
     const navigate= useNavigate();
     function getData(){
         axios.get("https://641312143b710647375e5d37.mockapi.io/crud-app")
@@ -27,8 +28,26 @@ export default function Read(){
     },[])
     
     return(
-        <>  <h1>Read Operation</h1>
-            <table className="table">
+        <>  
+            <div className="form-check form-switch">
+                <input className="form-check-input" onClick={()=>{
+                    if(tabledark==="table-dark"){
+                        setTabledark("");
+                    }else{
+                        setTabledark("table-dark")
+                    }
+                }} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+            </div>
+
+            <div className="d-flex justify-content-between m-2">
+                <h1>Read Operation</h1>
+
+                <Link to="/">
+                    <button className="btn btn-secondary">Create</button>
+                </Link>   
+            </div>
+      
+            <table className={`table ${tabledark}`}>
                 <thead>
                     <tr>
                     <th scope="col">#</th>
